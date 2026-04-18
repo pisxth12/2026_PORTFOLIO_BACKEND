@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Pages\Auth\CustomLogin;
 use App\Filament\Widgets\ActivityTimeline;
 use App\Filament\Widgets\LatestProjects;
 use App\Filament\Widgets\ProjectsByTech;
@@ -13,11 +14,11 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationItem;
+use Filament\Navigation\UserMenuItem;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
-use Filament\Support\Colors\Color;
-use Filament\Widgets;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -33,9 +34,23 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
+            ->favicon(asset('images/favicon.ico'))
             ->login()
-            ->colors([
-                'primary' => Color::Amber,
+            ->path('sorn-piseth-admin')
+            ->brandName('')
+            ->userMenuItems([
+                'profile' => UserMenuItem::make()
+                    ->label('My Profile')
+                    ->icon('heroicon-o-user-circle'),
+                'logout' => UserMenuItem::make()
+                    ->label('Logout')
+                    ->icon('heroicon-o-arrow-right-on-rectangle'),
+            ])
+            ->navigationItems([
+                NavigationItem::make('Visit Website')
+                    ->url('https://pisethsorn.site', shouldOpenInNewTab: true)
+                    ->icon('heroicon-o-globe-alt')
+                    ->sort(1),
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
@@ -45,7 +60,6 @@ class AdminPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
                 StatsOverview::class,
-                Widgets\AccountWidget::class,
                 WelcomeWidget::class,
                 SkillsChart::class,
                 ProjectsByTech::class,

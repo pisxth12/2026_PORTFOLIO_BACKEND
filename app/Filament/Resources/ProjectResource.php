@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Str;
 
 class ProjectResource extends Resource
 {
@@ -47,11 +48,18 @@ class ProjectResource extends Resource
                             ]),
                         Forms\Components\FileUpload::make('image')
                             ->image()
+                            ->disk('cloudinary')
                             ->directory('projects')
                             ->imageResizeMode('cover')
                             ->imageResizeTargetWidth('800')
                             ->imageResizeTargetHeight('600')
-                            ->maxSize(2048),
+                            ->maxSize(2048)
+                            ->required()
+                            ->getUploadedFileNameForStorageUsing(function ($file, $get){
+                                $projectName = $get('title');
+                                $extension  = $file->getClientOriginalExtension();
+                                return Str::slug($projectName).'.'.$extension;
+                            }),
                         Forms\Components\TextInput::make('github')
                             ->url()
                             ->prefix('https://')
@@ -90,6 +98,7 @@ class ProjectResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+
             ->filters([
                 Tables\Filters\Filter::make('has_github')
                     ->query(fn ($query) => $query->whereNotNull('github')),

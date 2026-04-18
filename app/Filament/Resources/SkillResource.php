@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Str;
 
 class SkillResource extends Resource
 {
@@ -66,11 +67,17 @@ class SkillResource extends Resource
                         ->columnSpanFull(),
                     Forms\Components\FileUpload::make('image')
                         ->image()
+                        ->disk('cloudinary')
                         ->directory('skills')
                         ->imageResizeMode('cover')
                         ->imageResizeTargetWidth('100')
                         ->imageResizeTargetHeight('100')
-                        ->maxSize(512),
+                        ->maxSize(512)
+                        ->getUploadedFileNameForStorageUsing(function ($file, $get) {
+                            $skillName = $get('name');
+                            $extension = $file->getClientOriginalExtension();
+                            return Str::slug($skillName) . '.' . $extension;
+                        })
                 ])
                 ->columns(2),
             ]);

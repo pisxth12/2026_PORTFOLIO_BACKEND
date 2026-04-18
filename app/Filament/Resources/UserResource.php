@@ -48,21 +48,64 @@ class UserResource extends Resource
                                 'Female' => 'Female',
                                 'Other' => 'Other',
                             ]),
+                        Forms\Components\FileUpload::make('cv')
+                            ->acceptedFileTypes(['application/pdf'])
+                            ->disk('cloudinary')
+                            ->directory('cvs')
+                            ->maxSize(5120) // 5MB
+                            ->visibility('public')
+                            ->helperText('Upload your CV (PDF only, max 5MB)')
+                            ->columnSpanFull(),
                         Forms\Components\TextInput::make('address')
                             ->maxLength(255),
                         Forms\Components\DatePicker::make('birth_date'),
-                        Forms\Components\FileUpload::make('profile_image')
-                            ->image()
-                            ->directory('profiles')
-                            ->avatar()
-                            ->imageResizeMode('cover')
-                            ->imageCropAspectRatio('1:1')
-                            ->maxSize(1024),
+                        Forms\Components\TextInput::make('experience')
+                            ->label('Experience')
+                            ->placeholder('e.g., 3+ years')
+                            ->maxLength(255),
+
+                        Forms\Components\TextInput::make('projects_count')
+                            ->label('Total Projects')
+                            ->numeric()
+                            ->default(0)
+                            ->minValue(0),
+
+                        Forms\Components\TextInput::make('clients_count')
+                            ->label('Total Clients')
+                            ->numeric()
+                            ->default(0)
+                            ->minValue(0),
                         Forms\Components\TextInput::make('password')
                             ->password()
                             ->dehydrateStateUsing(fn ($state) => Hash::make($state))
                             ->dehydrated(fn ($state) => filled($state))
                             ->required(fn (string $context): bool => $context === 'create'),
+                        Forms\Components\FileUpload::make('profile_image')
+                            ->image()
+                            ->disk('cloudinary')
+                            ->directory('profiles')
+                            ->avatar()
+                            ->imageResizeMode('cover')
+                            ->imageCropAspectRatio('1:1')
+                            ->maxSize(1024),
+
+                        Forms\Components\FileUpload::make('home_image')
+                            ->image()
+                            ->disk('cloudinary')
+                            ->directory('profiles')
+                            ->avatar()
+                            ->imageResizeMode('cover')
+                            ->imageCropAspectRatio('1:1')
+                            ->maxSize(1024),
+                        Forms\Components\FileUpload::make('about_image')
+                            ->image()
+                            ->disk('cloudinary')
+                            ->directory('profiles')
+                            ->avatar()
+                            ->imageResizeMode('cover')
+                            ->imageCropAspectRatio('1:1')
+                            ->maxSize(1024),
+
                     ])->columns(2),
             ]);
     }
@@ -74,8 +117,6 @@ class UserResource extends Resource
                 Tables\Columns\ImageColumn::make('profile_image')
                     ->disk('public')
                     ->circular(),
-                Tables\Columns\ImageColumn::make('name')
-                ->circular(),
                 Tables\Columns\TextColumn::make('name')
                 ->searchable()
                 ->sortable(),

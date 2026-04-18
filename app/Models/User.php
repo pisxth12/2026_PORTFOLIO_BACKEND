@@ -20,7 +20,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name', 'email', 'password', 'profession', 'bio', 'phone',
-        'gender', 'address', 'birth_date', 'profile_image'
+        'gender', 'address', 'birth_date', 'profile_image', 'home_image', 'about_image',
+        'cv', 'experience', 'projects_count', 'clients_count',
     ];
 
     /**
@@ -59,5 +60,10 @@ class User extends Authenticatable
     public function socialLinks(): HasMany
     {
         return $this->hasMany(SocialLink::class);
+    }
+
+    public function routeNotificationForTelegram()
+    {
+        return config('services.telegram.chat_id');
     }
 }

@@ -1,0 +1,13 @@
+[90m= [39m[34;4mApp\Models\Skill[39;24m {#8906
+    [34mid[39m: [35m4[39m,
+    [34muser_id[39m: [35m1[39m,
+    [34mname[39m: [32m"[39m[32mLaravel[39m[32m"[39m,
+    [34mcategory[39m: [32m"[39m[32mBackend[39m[32m"[39m,
+    [34mlevel[39m: [32m"[39m[32mIntermediate[39m[32m"[39m,
+    [34mexperience[39m: [32m"[39m[32m1 years[39m[32m"[39m,
+    [34mprojects[39m: [35m10[39m,
+    [34mdescription[39m: [32m"[39m[32mPHP framework for building robust web applications[39m[32m"[39m,
+    [34mimage[39m: [32m"[39m[32m/images/skills/laravel.png[39m[32m"[39m,
+    [34mcreated_at[39m: [32m"[39m[32m2026-04-17 18:34:14[39m[32m"[39m,
+    [34mupdated_at[39m: [32m"[39m[32m2026-04-17 18:34:14[39m[32m"[39m,
+  }
