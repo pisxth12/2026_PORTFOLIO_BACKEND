@@ -11,6 +11,7 @@ php artisan migrate --force
 
 echo "▶ Seeding admin user..."
 php artisan db:seed --class=AdminUserSeeder --force
+php artisan db:seed --class=PortfolioSeeder --force
 
 echo "▶ Linking storage..."
 php artisan storage:link || true

@@ -19,7 +19,7 @@ class PortfolioSeeder extends Seeder
     public function run(): void
     {
         $user = User::updateOrCreate(
-            ['email' => 'admin@gmail.com'],
+            ['email' => 'seth.dev.1100@gmail.com'],
             [
                 'name' => 'Sorn Piseth',
                 'profession' => 'Full-Stack Developer',
