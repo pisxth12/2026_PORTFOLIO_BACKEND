@@ -29,15 +29,25 @@ class SocialLinkResource extends Resource
                     ->default(1),
                 Forms\Components\Select::make('platform')
                     ->required()
-                    ->options([
-                        'github' => 'GitHub',
-                        'facebook' => 'Facebook',
-                        'telegram' => 'Telegram',
-                        'linkedin' => 'LinkedIn',
-                        'twitter' => 'Twitter',
-                        'instagram' => 'Instagram',
-                        'youtube' => 'YouTube',
-                    ]),
+                    ->options(function (callable $get){
+                        $userId =  $get('user_id')?? 1;
+
+                        $userPlatforms = SocialLink::where('user_id', $userId)
+                            ->pluck('platform')
+                            ->toArray();
+
+                        $allPlatforms = [
+                            'github' => 'GitHub',
+                            'facebook' => 'Facebook',
+                            'telegram' => 'Telegram',
+                            'linkedin' => 'LinkedIn',
+                            'twitter' => 'Twitter',
+                            'instagram' => 'Instagram',
+                            'youtube' => 'YouTube',
+                        ];
+
+                        return array_diff_key($allPlatforms, array_flip($userPlatforms));
+                    }),
                 Forms\Components\TextInput::make('url')
                     ->required()
                     ->url()

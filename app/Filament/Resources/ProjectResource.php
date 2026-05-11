@@ -53,7 +53,7 @@ class ProjectResource extends Resource
                             ->imageResizeMode('cover')
                             ->imageResizeTargetWidth('800')
                             ->imageResizeTargetHeight('600')
-                            ->maxSize(2048)
+                            ->maxSize(1024 * 1024 * 100)
                             ->required()
                             ->getUploadedFileNameForStorageUsing(function ($file, $get){
                                 $projectName = $get('title');
