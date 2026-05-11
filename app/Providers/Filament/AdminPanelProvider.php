@@ -35,6 +35,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->favicon(asset('images/favicon.ico'))
+            ->viteTheme('resources/css/filament.css')
             ->login()
             ->path('sorn-piseth-admin')
             ->brandName('')
