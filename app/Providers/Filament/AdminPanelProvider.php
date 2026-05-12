@@ -36,8 +36,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->favicon(asset('images/favicon.ico'))
             ->login()
-            ->path('admin/login')
-            ->brandName('')
+            ->brandName('Portfolio')
             ->userMenuItems([
                 'profile' => UserMenuItem::make()
                     ->label('My Profile')
