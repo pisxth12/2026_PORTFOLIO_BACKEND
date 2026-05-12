@@ -16,7 +16,8 @@ return Application::configure(basePath: dirname(__DIR__))
             'livewire/upload',
             'livewire/upload-file',
             'livewire/*',
-        ]);
+        ])
+            ->trustProxies(at: '*');
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
