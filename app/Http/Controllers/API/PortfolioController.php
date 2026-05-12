@@ -69,4 +69,18 @@ class PortfolioController extends Controller
         );
         return response()->json(['message' => 'Message sent successfully'], 201);
     }
+
+
+    public function createUser(Request $request){
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'password' => 'required|string|min:8',
+        ]);
+
+        $user = User::create($validated);
+
+        return response()->json(['user' => $user]);
+    }
+
 }
