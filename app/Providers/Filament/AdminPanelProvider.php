@@ -36,7 +36,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->favicon(asset('images/favicon.ico'))
             ->login()
-            ->path('sorn-piseth-admin')
+            ->path('admin/login')
             ->brandName('')
             ->userMenuItems([
                 'profile' => UserMenuItem::make()

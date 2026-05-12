@@ -12,5 +12,3 @@ Route::prefix('v1')->group(function () {
 Route::get('/x', function() {
     return 'ok';
 });
-
-Route::post('/create-admin',[PortfolioController::class, 'createUser']);
