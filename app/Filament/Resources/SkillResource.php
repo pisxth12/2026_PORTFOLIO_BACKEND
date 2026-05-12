@@ -72,7 +72,7 @@ class SkillResource extends Resource
                         ->imageResizeMode('cover')
                         ->imageResizeTargetWidth('100')
                         ->imageResizeTargetHeight('100')
-                        ->maxSize(512)
+                        ->maxSize(51200)
                         ->getUploadedFileNameForStorageUsing(function ($file, $get) {
                             $skillName = $get('name');
                             $extension = $file->getClientOriginalExtension();
