@@ -4,7 +4,7 @@ WORKDIR /app
 
 RUN apt-get update && apt-get install -y \
     git curl zip unzip libpng-dev libonig-dev libxml2-dev \
-    libzip-dev libicu-dev libpq-dev postgresql-client \
+    libzip-dev libicu-dev libpq-dev \
     && docker-php-ext-install pdo_pgsql pgsql mbstring exif pcntl bcmath gd zip intl
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -17,4 +17,4 @@ RUN chmod -R 775 storage bootstrap/cache
 
 EXPOSE 10000
 
-CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000
+CMD php artisan serve --host=0.0.0.0 --port=10000
