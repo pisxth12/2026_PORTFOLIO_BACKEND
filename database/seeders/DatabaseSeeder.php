@@ -14,17 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        try {
-            $user = User::updateOrCreate(
-                ['email' => 'admin@gmail.com'],
-                [
-                    'name' => 'Admin',
-                    'password' => Hash::make('Admin123'),
-                ]
-            );
-            $this->command->info('User created: ' . $user->email);
-        } catch (\Exception $e) {
-            $this->command->error('Seeder failed: ' . $e->getMessage());
-        }
+      //
     }
 }

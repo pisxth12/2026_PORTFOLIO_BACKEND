@@ -13,7 +13,8 @@ class PortfolioController extends Controller
 {
     public function getPortfolio()
     {
-        $user = User::with(['socialLinks', 'skills', 'projects'])->first();
+
+        $user = User::with(['socialLinks', 'skills', 'projects'])->where('email', 'seth.dev.1100@gmail.com')->first();
 
         if (!$user) {
             return response()->json(['error' => 'No user found'], 404);
