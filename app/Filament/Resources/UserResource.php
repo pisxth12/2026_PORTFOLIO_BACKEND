@@ -36,7 +36,7 @@ class UserResource extends Resource
                             ->maxLength(255),
                         Forms\Components\TextInput::make('profession')
                             ->maxLength(255),
-                        Forms\Components\RichEditor::make('bio')
+                        Forms\Components\Textarea::make('bio')
                             ->maxLength(65535)
                             ->columnSpanFull(),
                         Forms\Components\TextInput::make('phone')
