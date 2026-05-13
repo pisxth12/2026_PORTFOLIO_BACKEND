@@ -27,10 +27,7 @@ class ProjectResource extends Resource
             ->schema([
                 Forms\Components\Section::make('Project Information')
                     ->schema([
-                        Forms\Components\Select::make('user_id')
-                            ->relationship('user', 'name')
-                            ->required()
-                            ->hidden()
+                        Forms\Components\Hidden::make('user_id')
                             ->default(auth()->id()),
                         Forms\Components\TextInput::make('title')
                             ->required()

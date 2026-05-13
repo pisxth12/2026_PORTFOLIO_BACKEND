@@ -27,11 +27,8 @@ class SkillResource extends Resource
             ->schema([
                 Forms\Components\Section::make('Skill Details')
                 ->schema([
-                    Forms\Components\Select::make('user_id')
-                    ->relationship('user', 'name')
-                    ->required()
-                        ->hidden()
-                    ->default(auth()->id()),
+                    Forms\Components\Hidden::make('user_id')
+                        ->default(auth()->id()),
                     Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255)

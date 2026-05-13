@@ -23,10 +23,7 @@ class SocialLinkResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('user_id')
-                    ->relationship('user', 'name')
-                    ->required()
-                    ->hidden()
+                Forms\Components\Hidden::make('user_id')
                     ->default(auth()->id()),
                 Forms\Components\Select::make('platform')
                     ->required()
