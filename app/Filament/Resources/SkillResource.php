@@ -30,7 +30,8 @@ class SkillResource extends Resource
                     Forms\Components\Select::make('user_id')
                     ->relationship('user', 'name')
                     ->required()
-                    ->default(1),
+                        ->hidden()
+                    ->default(auth()->id()),
                     Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255)
@@ -46,7 +47,6 @@ class SkillResource extends Resource
                         'Mobile' => 'Mobile',
                     ]),
                     Forms\Components\Select::make('level')
-                        ->required()
                         ->options([
                             'Beginner' => 'Beginner',
                             'Intermediate' => 'Intermediate',

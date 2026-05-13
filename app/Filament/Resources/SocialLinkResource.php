@@ -26,7 +26,8 @@ class SocialLinkResource extends Resource
                 Forms\Components\Select::make('user_id')
                     ->relationship('user', 'name')
                     ->required()
-                    ->default(1),
+                    ->hidden()
+                    ->default(auth()->id()),
                 Forms\Components\Select::make('platform')
                     ->required()
                     ->options(function (callable $get){

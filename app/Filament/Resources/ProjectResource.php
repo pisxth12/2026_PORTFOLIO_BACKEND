@@ -30,11 +30,12 @@ class ProjectResource extends Resource
                         Forms\Components\Select::make('user_id')
                             ->relationship('user', 'name')
                             ->required()
-                            ->default(1),
+                            ->hidden()
+                            ->default(auth()->id()),
                         Forms\Components\TextInput::make('title')
                             ->required()
                             ->maxLength(255),
-                        Forms\Components\RichEditor::make('description')
+                        Forms\Components\Textarea::make('description')
                             ->maxLength(65535),
                         Forms\Components\TagsInput::make('languages')
                             ->required()
